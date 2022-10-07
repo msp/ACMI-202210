@@ -54,7 +54,7 @@ document.ontouchmove = function(event) {
 
 async function runExperience() {
   console.log('runExperience...')
-  fullscreen(true);
+  // fullscreen(true);
 
   await Tone.start()
   console.log('Tone.js audio is ready!')
