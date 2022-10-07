@@ -42,6 +42,8 @@ function draw() {
 
 async function runExperience() {
   console.log('runExperience...')
+  fullscreen(true);
+
   await Tone.start()
   console.log('Tone.js audio is ready!')
 
@@ -82,8 +84,6 @@ function calculateDSP() {
       sustain: Math.random(),
       release: Math.random()
     });
-
-    console.log(ampEnvs[i]);
 
     ampEnvs[i].toDestination();
 
