@@ -1,4 +1,4 @@
-const numPartials = 16;
+const numPartials = 4;
 const osc = [];
 const freqs = [];
 const ampEnvs = [];
@@ -107,7 +107,7 @@ function calculateDSP() {
       );
 
     osc[i] = new Tone.Oscillator(freqs[i], "sine").connect(ampEnvs[i]);
-    osc[i].volume.value = -42;
+    osc[i].volume.value = -35;
     osc[i].start();
   }
 }
