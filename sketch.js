@@ -54,7 +54,7 @@ document.ontouchmove = function(event) {
 async function runExperience() {
   console.log('runExperience at ' + rate + '...')
   showText = false;
-  // fullscreen(true);
+  goFullScreen();
 
   await Tone.start()
   console.log('Tone.js audio is ready!')
@@ -120,4 +120,19 @@ function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function goFullScreen() {
+  const elem = document.documentElement;
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  } else {
+    console.log("Hmm, can't seem to requestFullscreen! What browser is this?")
+  }
 }
