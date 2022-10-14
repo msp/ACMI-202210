@@ -28,10 +28,10 @@ function draw() {
   if (showText) {
     textSize(width / 10);
     textAlign(CENTER, BOTTOM);
-    text('Tap to play!', windowWidth / 2, windowHeight / 2);
+    text('Tap to play', windowWidth / 2, windowHeight / 2);
     textAlign(CENTER, TOP);
     textSize(width / 20);
-    text('(and turn up your phone volume)', windowWidth / 2, windowHeight / 2);
+    text('(turn up phone volume)', windowWidth / 2, windowHeight / 2);
   }
 }
 
