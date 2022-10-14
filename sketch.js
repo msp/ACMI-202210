@@ -5,8 +5,9 @@ const ampEnvs = [];
 const fundamental = 55;
 const shift = getRandomIntInclusive(1, 60);
 const toneLength = "16";
+const rate = getRandomIntInclusive(5, 30);
 
-let cnv, slider, rate, audioRunning;
+let cnv, slider, audioRunning, showText = true;
 
 ////////////////////////////////////////////////////////////////////////////////
 // P5.js lifecycle                                                            //
@@ -18,22 +19,20 @@ function setup() {
   cnv = createCanvas(windowWidth, windowHeight);
   cnv.mousePressed(runExperience);
 
-  textSize(width / 30);
-  // textAlign(CENTER, CENTER);
-
-  // TODO - set here when decided
-  // frameRate(10);
-
-  renderUI();
+  frameRate(rate);
 }
 
 function draw() {
   colorMode(HSB);
   background(random(0, 255), 255, 255);
-
-  text('tap to play', 10, 100);
-
-  frameRate(slider.value());
+  if (showText) {
+    textSize(width / 10);
+    textAlign(CENTER, BOTTOM);
+    text('Tap to play!', windowWidth / 2, windowHeight / 2);
+    textAlign(CENTER, TOP);
+    textSize(width / 20);
+    text('(and turn up your phone volume)', windowWidth / 2, windowHeight / 2);
+  }
 }
 
 /* full screening will change the size of the canvas */
@@ -53,7 +52,8 @@ document.ontouchmove = function(event) {
 ////////////////////////////////////////////////////////////////////////////////
 
 async function runExperience() {
-  console.log('runExperience...')
+  console.log('runExperience at ' + rate + '...')
+  showText = false;
   // fullscreen(true);
 
   await Tone.start()
@@ -110,27 +110,6 @@ function calculateDSP() {
     osc[i].volume.value = -42;
     osc[i].start();
   }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// GUI                                                                        //
-////////////////////////////////////////////////////////////////////////////////
-
-function renderUI() {
-  slider = createSlider(1, 60, 10, 1);
-  slider.position(10, 10);
-  slider.style('width', '50%');
-  slider.style('height', '10px');
-  slider.input(sliderChangeEvent);
-
-  rate = createInput('');
-  rate.position(10, 30);
-  rate.size(15);
-  rate.value(slider.value());
-}
-
-function sliderChangeEvent() {
-  rate.value(this.value());
 }
 
 ////////////////////////////////////////////////////////////////////////////////
